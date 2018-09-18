@@ -48,7 +48,7 @@ public class StudentController implements Serializable {
 
 	@DeleteMapping("/{id}")
 	public void deleteStudent(@PathVariable Integer id) {
-		studentRepository.findById(id).orElseThrow(StudentNotFoundException::new);
+		//studentRepository.findById(id).orElseThrow(StudentNotFoundException::new);
 		studentRepository.deleteById(id);
 	}
 

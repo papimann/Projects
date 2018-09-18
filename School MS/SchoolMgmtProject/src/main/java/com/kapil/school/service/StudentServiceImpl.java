@@ -24,7 +24,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
 
 	@Override
 	public StudentDTO getStudentById(Integer studentId) {
-		Student student = studentRepository.findById(studentId).orElseThrow(StudentNotFoundException::new);
+		Student student = studentRepository.findById(studentId).get();// .orElseThrow(StudentNotFoundException::new);
 		return StudentConverter.entityToDto(student);
 	}
 
@@ -41,10 +41,11 @@ public class StudentServiceImpl implements StudentService, Serializable {
 	@Override
 	public StudentDTO updateStudent(StudentDTO studentDTO, Integer id) {
 		Student student = StudentConverter.dtoToEntity(studentDTO);
-		if (student.getId() != id) {
-			throw new Exception("Student Id does not match");
-		}
-		studentRepository.findById(id).orElseThrow(new RuntimeException("Student Not Found"));
+		/*
+		 * if (student.getId() != id) { throw new
+		 * Exception("Student Id does not match"); }
+		 */
+//		studentRepository.findById(id).orElseThrow(new RuntimeException("Student Not Found"));
 		return StudentConverter.entityToDto(studentRepository.save(student));
 	}
 

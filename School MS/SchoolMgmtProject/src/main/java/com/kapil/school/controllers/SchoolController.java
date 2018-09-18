@@ -4,12 +4,10 @@ import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class SchoolController implements Serializable {
 
 	/**
@@ -22,7 +20,8 @@ public class SchoolController implements Serializable {
 
 	@RequestMapping("/")
 	public String home(Model model) {
-		model.addAttribute("appName", appName);
-		return "home";
+		System.out.println(appName);
+		model.addAttribute("message", appName);
+		return "index";
 	}
 }
