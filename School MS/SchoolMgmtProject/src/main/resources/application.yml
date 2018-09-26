@@ -12,3 +12,6 @@ spring:
       ddl-auto: update
   application:
     name: Student
+    schoolName: Shri Hari Kripa Public School
+  student:
+   api: http://localhost:8080/api/student
