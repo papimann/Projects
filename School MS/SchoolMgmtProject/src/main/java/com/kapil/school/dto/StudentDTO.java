@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.hibernate.validator.constraints.Range;
+
 public class StudentDTO implements Serializable {
 
 	/**
@@ -37,7 +39,7 @@ public class StudentDTO implements Serializable {
 	 * @param createDateTime
 	 * @param updateDateTime
 	 */
-	public StudentDTO(int id, String name, String email, String mobile, String lastName, String firstName,
+	public StudentDTO(int id, String name, String email, int mobile, String lastName, String firstName,
 			String fatherName, String motherName, int aadhaarNumber, String panCard, LocalDate admissionDate,
 			LocalDate relievingDate, Double monthlyFee, LocalDateTime createDateTime, LocalDateTime updateDateTime) {
 		super();
@@ -64,7 +66,8 @@ public class StudentDTO implements Serializable {
 
 	private String email;
 
-	private String mobile;
+	@Range(min = 10, max = 10)
+	private int mobile;
 
 	private String lastName;
 
@@ -74,6 +77,7 @@ public class StudentDTO implements Serializable {
 
 	private String motherName;
 
+	@Range(min = 12, max = 12)
 	private int aadhaarNumber;
 
 	private String panCard;
@@ -133,14 +137,14 @@ public class StudentDTO implements Serializable {
 	/**
 	 * @return the mobile
 	 */
-	public String getMobile() {
+	public int getMobile() {
 		return mobile;
 	}
 
 	/**
 	 * @param mobile the mobile to set
 	 */
-	public void setMobile(String mobile) {
+	public void setMobile(int mobile) {
 		this.mobile = mobile;
 	}
 

@@ -5,19 +5,21 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "fee")
+@Data
 public class StudentFee implements Serializable {
 
 	/**
@@ -66,77 +68,8 @@ public class StudentFee implements Serializable {
 	@UpdateTimestamp
 	private LocalDateTime updateDateTime;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "student_id")
+	@ManyToOne
+	@JoinColumn(name = "student_id", nullable = false)
 	private Student student;
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the amount
-	 */
-	public double getAmount() {
-		return amount;
-	}
-
-	/**
-	 * @param amount the amount to set
-	 */
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-	/**
-	 * @return the createDateTime
-	 */
-	public LocalDateTime getCreateDateTime() {
-		return createDateTime;
-	}
-
-	/**
-	 * @param createDateTime the createDateTime to set
-	 */
-	public void setCreateDateTime(LocalDateTime createDateTime) {
-		this.createDateTime = createDateTime;
-	}
-
-	/**
-	 * @return the updateDateTime
-	 */
-	public LocalDateTime getUpdateDateTime() {
-		return updateDateTime;
-	}
-
-	/**
-	 * @param updateDateTime the updateDateTime to set
-	 */
-	public void setUpdateDateTime(LocalDateTime updateDateTime) {
-		this.updateDateTime = updateDateTime;
-	}
-
-	/**
-	 * @return the student
-	 */
-	public Student getStudent() {
-		return student;
-	}
-
-	/**
-	 * @param student the student to set
-	 */
-	public void setStudent(Student student) {
-		this.student = student;
-	}
 }
